@@ -153,7 +153,7 @@ function renderResult(animal, gender) {
     const item = document.createElement("div");
     item.className = "compatible-item";
     item.innerHTML = `
-      <span class="compatible-emoji">${a.emoji}</span>
+      <img class="compatible-img" src="images/animals/${a.id}.svg" alt="${a.name}">
       <span class="compatible-name">${a.name}</span>
     `;
     list.appendChild(item);

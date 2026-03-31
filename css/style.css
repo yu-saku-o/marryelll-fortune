@@ -133,8 +133,13 @@ html, body {
   justify-content: center;
   flex-wrap: wrap;
   gap: 6px;
-  font-size: 30px;
   margin: 20px 0;
+}
+
+.animal-parade img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
 }
 
 .top-desc {
@@ -461,10 +466,12 @@ select:focus {
   box-shadow: 0 2px 8px rgba(0,0,0,0.06);
 }
 
-.compatible-emoji {
-  font-size: 32px;
+.compatible-img {
+  width: 52px;
+  height: 52px;
   display: block;
-  margin-bottom: 4px;
+  margin: 0 auto 4px;
+  object-fit: contain;
 }
 
 .compatible-name {

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <!-- 頭ベース -->
+  <circle cx="60" cy="66" r="46" fill="#7B8FA1"/>
+  <!-- 三角耳（左） -->
+  <polygon points="24,52 38,14 54,50" fill="#7B8FA1"/>
+  <polygon points="29,49 38,20 49,48" fill="#B8C8D8"/>
+  <!-- 三角耳（右） -->
+  <polygon points="66,50 82,14 96,52" fill="#7B8FA1"/>
+  <polygon points="71,48 82,20 91,49" fill="#B8C8D8"/>
+  <!-- 顔 -->
+  <circle cx="60" cy="68" r="36" fill="#D8E4EC"/>
+  <!-- 口周り白 -->
+  <ellipse cx="60" cy="80" rx="16" ry="11" fill="#EEF4F8"/>
+  <!-- 眉 -->
+  <path d="M 43 58 Q 49 55 55 58" stroke="#7B8FA1" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M 65 58 Q 71 55 77 58" stroke="#7B8FA1" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <!-- 目 -->
+  <ellipse cx="50" cy="65" rx="5.5" ry="5.5" fill="#2D3540"/>
+  <ellipse cx="70" cy="65" rx="5.5" ry="5.5" fill="#2D3540"/>
+  <circle cx="51.8" cy="63.2" r="1.8" fill="white"/>
+  <circle cx="71.8" cy="63.2" r="1.8" fill="white"/>
+  <!-- ほっぺ -->
+  <circle cx="42" cy="75" r="7" fill="#FFB3C0" opacity="0.45"/>
+  <circle cx="78" cy="75" r="7" fill="#FFB3C0" opacity="0.45"/>
+  <!-- 鼻 -->
+  <ellipse cx="60" cy="76" rx="4" ry="3" fill="#5A6878"/>
+  <!-- 口 -->
+  <path d="M 55 80 Q 60 85 65 80" stroke="#5A6878" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+</svg>

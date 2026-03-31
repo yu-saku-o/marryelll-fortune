@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <!-- 頭ベース -->
+  <circle cx="60" cy="66" r="46" fill="#C0874B"/>
+  <!-- 耳（丸くて大きい） -->
+  <circle cx="18" cy="62" r="16" fill="#C0874B"/>
+  <circle cx="102" cy="62" r="16" fill="#C0874B"/>
+  <circle cx="18" cy="62" r="10" fill="#E8A870"/>
+  <circle cx="102" cy="62" r="10" fill="#E8A870"/>
+  <!-- 顔 -->
+  <circle cx="60" cy="68" r="36" fill="#D4985A"/>
+  <!-- 顔の白い部分（猿の特徴） -->
+  <ellipse cx="60" cy="74" rx="22" ry="18" fill="#F5E0C0"/>
+  <!-- 眉 -->
+  <path d="M 44 55 Q 49 52 54 55" stroke="#7A5030" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M 66 55 Q 71 52 76 55" stroke="#7A5030" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <!-- 目 -->
+  <ellipse cx="50" cy="62" rx="5.5" ry="5.5" fill="#2D1B00"/>
+  <ellipse cx="70" cy="62" rx="5.5" ry="5.5" fill="#2D1B00"/>
+  <circle cx="51.8" cy="60.2" r="1.8" fill="white"/>
+  <circle cx="71.8" cy="60.2" r="1.8" fill="white"/>
+  <!-- ほっぺ -->
+  <circle cx="41" cy="72" r="7" fill="#FFB3C0" opacity="0.5"/>
+  <circle cx="79" cy="72" r="7" fill="#FFB3C0" opacity="0.5"/>
+  <!-- 鼻（猿の平たい鼻） -->
+  <ellipse cx="60" cy="76" rx="6" ry="4" fill="#A07040"/>
+  <circle cx="57" cy="76" r="2" fill="#7A5020"/>
+  <circle cx="63" cy="76" r="2" fill="#7A5020"/>
+  <!-- 口 -->
+  <path d="M 54 81 Q 60 86 66 81" stroke="#7A5020" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+</svg>

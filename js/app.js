@@ -1,27 +1,44 @@
 /**
  * app.js - マリエル 動物占い UIロジック
+ * LINE LIFF連携・画面遷移・フォーム処理
  * バージョン: v1.0
  */
 
+// ============================================================
+// LIFF設定
+// ============================================================
+// ※ LINE Developers で LIFF を登録後、以下の LIFF_ID を差し替えてください
 const LIFF_ID = "2009660796-i7S6OmjO";
 
+// ============================================================
+// 初期化
+// ============================================================
 document.addEventListener("DOMContentLoaded", async () => {
   initBirthdaySelects();
   initGenderButtons();
+
+  // LIFF初期化（LINE外ブラウザでも動作させるためtry-catch）
   try {
     await liff.init({ liffId: LIFF_ID });
   } catch (e) {
-    console.warn("LIFF init skipped:", e);
+    console.warn("LIFF init skipped (not in LINE):", e);
   }
+
   showScreen("top");
 });
 
+// ============================================================
+// 画面遷移
+// ============================================================
 function showScreen(id) {
   document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
   const target = document.getElementById("screen-" + id);
   if (target) target.classList.add("active");
 }
 
+// ============================================================
+// 性別ボタン
+// ============================================================
 function initGenderButtons() {
   document.querySelectorAll(".gender-btn").forEach(btn => {
     btn.addEventListener("click", () => {
@@ -36,20 +53,30 @@ function getSelectedGender() {
   return selected ? selected.dataset.gender : null;
 }
 
+// ============================================================
+// 生年月日セレクト生成
+// ============================================================
 function initBirthdaySelects() {
+  // 年（1940〜当年）
   const yearSel = document.getElementById("sel-year");
   const currentYear = new Date().getFullYear();
   for (let y = currentYear; y >= 1940; y--) {
     const opt = document.createElement("option");
-    opt.value = y; opt.textContent = y;
+    opt.value = y;
+    opt.textContent = y;
     yearSel.appendChild(opt);
   }
+
+  // 月
   const monthSel = document.getElementById("sel-month");
   for (let m = 1; m <= 12; m++) {
     const opt = document.createElement("option");
-    opt.value = m; opt.textContent = m;
+    opt.value = m;
+    opt.textContent = m;
     monthSel.appendChild(opt);
   }
+
+  // 日（月に応じて動的更新）
   updateDayOptions();
   yearSel.addEventListener("change", updateDayOptions);
   monthSel.addEventListener("change", updateDayOptions);
@@ -60,50 +87,79 @@ function updateDayOptions() {
   const month = parseInt(document.getElementById("sel-month").value) || 1;
   const daySel = document.getElementById("sel-day");
   const current = daySel.value;
+
   const daysInMonth = new Date(year, month, 0).getDate();
   daySel.innerHTML = "";
   const placeholder = document.createElement("option");
-  placeholder.value = ""; placeholder.textContent = "日";
-  placeholder.disabled = true; placeholder.selected = true;
+  placeholder.value = "";
+  placeholder.textContent = "日";
+  placeholder.disabled = true;
+  placeholder.selected = true;
   daySel.appendChild(placeholder);
+
   for (let d = 1; d <= daysInMonth; d++) {
     const opt = document.createElement("option");
-    opt.value = d; opt.textContent = d;
+    opt.value = d;
+    opt.textContent = d;
     daySel.appendChild(opt);
   }
-  if (current && parseInt(current) <= daysInMonth) daySel.value = current;
+
+  if (current && parseInt(current) <= daysInMonth) {
+    daySel.value = current;
+  }
 }
 
+// ============================================================
+// 占い実行
+// ============================================================
 function onFortune() {
   const gender = getSelectedGender();
   const year   = parseInt(document.getElementById("sel-year").value);
   const month  = parseInt(document.getElementById("sel-month").value);
   const day    = parseInt(document.getElementById("sel-day").value);
+
   if (!gender) { showToast("性別を選んでください 🙏"); return; }
   if (!year)   { showToast("生まれ年を選んでください 🙏"); return; }
   if (!month)  { showToast("生まれ月を選んでください 🙏"); return; }
   if (!day)    { showToast("生まれ日を選んでください 🙏"); return; }
+
   const result = getAnimalFortune(year, month, day);
   renderResult(result, gender);
   showScreen("result");
   window.scrollTo(0, 0);
 }
 
+// ============================================================
+// 結果画面レンダリング
+// ============================================================
 function renderResult(animal, gender) {
+  // メインカード（動物カラー）
   const mainCard = document.getElementById("animal-main-card");
   mainCard.style.background = buildGradient(animal.color);
-  document.getElementById("animal-emoji").textContent = animal.emoji;
-  document.getElementById("animal-name").textContent  = animal.name;
+
+  const img = document.getElementById("animal-img");
+  img.src = `images/animals/${animal.id}.svg`;
+  img.alt = animal.name;
+  document.getElementById("animal-name").textContent = animal.name;
+
+  // 性格・恋愛傾向
   document.getElementById("text-personality").textContent = animal.personality;
   document.getElementById("text-love").textContent = animal.love;
+
+  // 相性の良い動物3選
   const list = document.getElementById("compatible-list");
   list.innerHTML = "";
   animal.compatibleAnimals.forEach(a => {
     const item = document.createElement("div");
     item.className = "compatible-item";
-    item.innerHTML = `<span class="compatible-emoji">${a.emoji}</span><span class="compatible-name">${a.name}</span>`;
+    item.innerHTML = `
+      <span class="compatible-emoji">${a.emoji}</span>
+      <span class="compatible-name">${a.name}</span>
+    `;
     list.appendChild(item);
   });
+
+  // Flexメッセージ送信用に動物データを保持
   window.__currentAnimal = animal;
 }
 
@@ -125,16 +181,23 @@ function buildGradient(baseColor) {
   return colorMap[baseColor] || `linear-gradient(135deg, ${baseColor} 0%, ${baseColor}CC 100%)`;
 }
 
+// ============================================================
+// LINEに送信（Flexメッセージ直接送信）
+// ============================================================
 async function onSendToLine() {
   const animal = window.__currentAnimal;
   if (!animal) return;
+
+  // LINE外ブラウザの場合
   if (!liff.isInClient()) {
     showToast("LINEアプリ内で開いてください 📱");
     return;
   }
+
   const btn = document.getElementById("btn-send-line");
   btn.disabled = true;
   btn.textContent = "送信中...";
+
   try {
     const flexMsg = buildFlexMessage(animal);
     await liff.sendMessages([flexMsg]);
@@ -148,27 +211,37 @@ async function onSendToLine() {
   }
 }
 
+// ============================================================
+// もう一度占う
+// ============================================================
 function onRetry() {
   document.querySelectorAll(".gender-btn").forEach(b => b.classList.remove("selected"));
   document.getElementById("sel-year").selectedIndex  = 0;
   document.getElementById("sel-month").selectedIndex = 0;
   updateDayOptions();
+
   const btn = document.getElementById("btn-send-line");
   if (btn) {
     btn.disabled = false;
     btn.innerHTML = `<span class="line-icon">💬</span> 結果をLINEに送る`;
     btn.style.background = "";
   }
+
   showScreen("input");
   window.scrollTo(0, 0);
 }
 
+// ============================================================
+// トースト通知
+// ============================================================
 function showToast(message) {
   const existing = document.querySelector(".error-toast");
   if (existing) existing.remove();
+
   const toast = document.createElement("div");
   toast.className = "error-toast";
   toast.textContent = message;
   document.body.appendChild(toast);
+
   setTimeout(() => { toast.remove(); }, 3000);
 }

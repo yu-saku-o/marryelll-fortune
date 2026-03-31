@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <!-- 大きな丸耳（コアラの特徴） -->
+  <circle cx="24" cy="48" r="22" fill="#8EA9A8"/>
+  <circle cx="96" cy="48" r="22" fill="#8EA9A8"/>
+  <circle cx="24" cy="48" r="14" fill="#C0D4D2"/>
+  <circle cx="96" cy="48" r="14" fill="#C0D4D2"/>
+  <!-- 毛のテクスチャ（耳） -->
+  <circle cx="24" cy="48" r="10" fill="#B0CACA"/>
+  <circle cx="96" cy="48" r="10" fill="#B0CACA"/>
+  <!-- 頭ベース -->
+  <circle cx="60" cy="68" r="44" fill="#8EA9A8"/>
+  <!-- 顔 -->
+  <circle cx="60" cy="70" r="36" fill="#C8DCDA"/>
+  <!-- 眉 -->
+  <path d="M 44 58 Q 49 55 54 58" stroke="#6A8888" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M 66 58 Q 71 55 76 58" stroke="#6A8888" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <!-- 目 -->
+  <ellipse cx="50" cy="65" rx="5.5" ry="5.5" fill="#2D3530"/>
+  <ellipse cx="70" cy="65" rx="5.5" ry="5.5" fill="#2D3530"/>
+  <circle cx="51.8" cy="63.2" r="1.8" fill="white"/>
+  <circle cx="71.8" cy="63.2" r="1.8" fill="white"/>
+  <!-- ほっぺ -->
+  <circle cx="43" cy="76" r="7" fill="#FFB3C0" opacity="0.5"/>
+  <circle cx="77" cy="76" r="7" fill="#FFB3C0" opacity="0.5"/>
+  <!-- コアラの大きな鼻 -->
+  <ellipse cx="60" cy="78" rx="9" ry="7" fill="#506868"/>
+  <ellipse cx="60" cy="77" rx="7" ry="5" fill="#608080"/>
+  <!-- 鼻の穴 -->
+  <ellipse cx="57" cy="78" rx="2" ry="1.5" fill="#3A5050"/>
+  <ellipse cx="63" cy="78" rx="2" ry="1.5" fill="#3A5050"/>
+  <!-- 口 -->
+  <path d="M 54 84 Q 60 89 66 84" stroke="#506868" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+</svg>

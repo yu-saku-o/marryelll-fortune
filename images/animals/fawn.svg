@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <!-- 角（左） -->
+  <path d="M 42 22 Q 36 8 30 6 Q 32 14 38 18" stroke="#A07040" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M 38 16 Q 30 12 26 16" stroke="#A07040" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- 角（右） -->
+  <path d="M 78 22 Q 84 8 90 6 Q 88 14 82 18" stroke="#A07040" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M 82 16 Q 90 12 94 16" stroke="#A07040" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- 頭ベース -->
+  <circle cx="60" cy="66" r="46" fill="#C8956C"/>
+  <!-- 耳（大きめ） -->
+  <ellipse cx="33" cy="38" rx="11" ry="16" fill="#C8956C"/>
+  <ellipse cx="87" cy="38" rx="11" ry="16" fill="#C8956C"/>
+  <ellipse cx="33" cy="38" rx="6" ry="11" fill="#F0C0A0"/>
+  <ellipse cx="87" cy="38" rx="6" ry="11" fill="#F0C0A0"/>
+  <!-- 顔 -->
+  <circle cx="60" cy="68" r="36" fill="#F5D8B8"/>
+  <!-- 鼻筋の模様（こじかの白い斑） -->
+  <ellipse cx="60" cy="74" rx="10" ry="8" fill="#FFF0E0" opacity="0.7"/>
+  <!-- 目（大きめ・愛らしい） -->
+  <ellipse cx="49" cy="63" rx="7" ry="7" fill="#3D2010"/>
+  <ellipse cx="71" cy="63" rx="7" ry="7" fill="#3D2010"/>
+  <circle cx="51.5" cy="60.5" r="2.2" fill="white"/>
+  <circle cx="73.5" cy="60.5" r="2.2" fill="white"/>
+  <!-- まつげ -->
+  <path d="M 44 58 L 42 55" stroke="#3D2010" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M 47 57 L 46 54" stroke="#3D2010" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M 76 58 L 78 55" stroke="#3D2010" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M 73 57 L 74 54" stroke="#3D2010" stroke-width="1.2" stroke-linecap="round"/>
+  <!-- ほっぺ -->
+  <circle cx="42" cy="73" r="7.5" fill="#FFB3C0" opacity="0.55"/>
+  <circle cx="78" cy="73" r="7.5" fill="#FFB3C0" opacity="0.55"/>
+  <!-- 鼻 -->
+  <ellipse cx="60" cy="75" rx="4" ry="3" fill="#A07050"/>
+  <!-- 口 -->
+  <path d="M 55 79 Q 60 84 65 79" stroke="#A07050" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+</svg>

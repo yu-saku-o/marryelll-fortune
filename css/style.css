@@ -114,6 +114,8 @@ html, body {
   color: var(--text);
   margin-bottom: 6px;
   line-height: 1.3;
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 .top-title span {
@@ -123,6 +125,7 @@ html, body {
 .top-subtitle {
   font-size: 13px;
   color: var(--text-sub);
+  word-break: keep-all;
 }
 
 .animal-parade {
@@ -143,6 +146,7 @@ html, body {
   text-align: center;
   line-height: 1.7;
   margin-bottom: 24px;
+  word-break: keep-all;
 }
 
 .top-desc strong {
@@ -363,11 +367,12 @@ select:focus {
   box-shadow: var(--shadow);
 }
 
-.animal-emoji {
-  font-size: 70px;
-  line-height: 1;
+.animal-img {
+  width: 110px;
+  height: 110px;
+  object-fit: contain;
   margin-bottom: 8px;
-  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.18));
 }
 
 .animal-type-label {

@@ -229,7 +229,7 @@ function buildFlexMessage(animal) {
     contents: [
       {
         type: "image",
-        url: `https://marryelll-fortune.vercel.app/images/animals/${a.id}.svg`,
+        url: `https://marryelll-fortune.vercel.app/images/animals/png/${a.id}.png`,
         size: "60px",
         align: "center",
         aspectMode: "fit"
@@ -264,7 +264,7 @@ function buildFlexMessage(animal) {
         contents: [
           {
             type: "image",
-            url: `https://marryelll-fortune.vercel.app/images/animals/${animal.id}.svg`,
+            url: `https://marryelll-fortune.vercel.app/images/animals/png/${animal.id}.png`,
             size: "100px",
             align: "center",
             aspectMode: "fit"

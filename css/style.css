@@ -1,0 +1,531 @@
+/* ============================================================
+   マリエル 動物占い - スタイルシート
+   トンマナ：アットホーム・明るい・ポップ
+   ============================================================ */
+
+/* -- フォント読み込み -- */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap');
+
+/* -- リセット & ベース -- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --pink:      #FF8FAB;
+  --pink-light:#FFD6E0;
+  --yellow:    #FFD166;
+  --yellow-light: #FFF3C4;
+  --mint:      #6EC6B0;
+  --mint-light:#C8F0E8;
+  --purple:    #C9A7E8;
+  --purple-light: #EFE3FF;
+  --bg:        #FFF8F0;
+  --white:     #FFFFFF;
+  --text:      #3D2B1F;
+  --text-sub:  #7A6558;
+  --shadow:    0 4px 20px rgba(0,0,0,0.10);
+  --radius:    20px;
+  --radius-sm: 12px;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* ============================================================
+   レイアウト
+   ============================================================ */
+#app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.screen {
+  display: none;
+  width: 100%;
+  max-width: 420px;
+  animation: fadeIn 0.3s ease;
+}
+
+.screen.active {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   カード共通
+   ============================================================ */
+.card {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 28px 24px;
+  width: 100%;
+}
+
+/* ============================================================
+   TOP画面
+   ============================================================ */
+#screen-top .top-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.logo-mark {
+  font-size: 28px;
+}
+
+.brand-name {
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--pink);
+  letter-spacing: 0.06em;
+}
+
+.top-title {
+  font-size: 26px;
+  font-weight: 900;
+  color: var(--text);
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+
+.top-title span {
+  color: var(--pink);
+}
+
+.top-subtitle {
+  font-size: 13px;
+  color: var(--text-sub);
+}
+
+.animal-parade {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 30px;
+  margin: 20px 0;
+}
+
+.top-desc {
+  background: var(--yellow-light);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  font-size: 13px;
+  color: var(--text);
+  text-align: center;
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+.top-desc strong {
+  color: var(--pink);
+  font-weight: 700;
+}
+
+/* ============================================================
+   入力画面
+   ============================================================ */
+#screen-input .section-title {
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--text);
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-sub);
+  margin-bottom: 8px;
+  padding-left: 2px;
+}
+
+/* 性別選択 */
+.gender-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.gender-btn {
+  border: 2px solid #E8DDD8;
+  background: var(--white);
+  border-radius: var(--radius-sm);
+  padding: 14px 8px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-sub);
+  transition: all 0.2s;
+  text-align: center;
+}
+
+.gender-btn .g-icon { font-size: 22px; display: block; margin-bottom: 4px; }
+.gender-btn:hover { border-color: var(--pink); color: var(--pink); }
+.gender-btn.selected { border-color: var(--pink); background: var(--pink-light); color: var(--pink); }
+
+/* 生年月日 */
+.birthday-row {
+  display: grid;
+  grid-template-columns: 2fr 1.2fr 1.2fr;
+  gap: 8px;
+  align-items: center;
+}
+
+.select-wrap {
+  position: relative;
+}
+
+.select-wrap::after {
+  content: "▾";
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--pink);
+  pointer-events: none;
+  font-size: 14px;
+}
+
+select {
+  width: 100%;
+  padding: 12px 30px 12px 12px;
+  border: 2px solid #E8DDD8;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-family: 'Noto Sans JP', sans-serif;
+  background: var(--white);
+  color: var(--text);
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+select:focus {
+  outline: none;
+  border-color: var(--pink);
+}
+
+.date-unit {
+  font-size: 13px;
+  color: var(--text-sub);
+  text-align: center;
+  font-weight: 700;
+}
+
+/* ============================================================
+   ボタン共通
+   ============================================================ */
+.btn-primary {
+  display: block;
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, var(--pink) 0%, #FF6B9D 100%);
+  color: var(--white);
+  border: none;
+  border-radius: 50px;
+  font-size: 18px;
+  font-weight: 900;
+  font-family: 'Noto Sans JP', sans-serif;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(255, 143, 171, 0.45);
+  transition: all 0.2s;
+  letter-spacing: 0.04em;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(255, 143, 171, 0.55);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-secondary {
+  display: block;
+  width: 100%;
+  padding: 13px;
+  background: var(--white);
+  color: var(--pink);
+  border: 2px solid var(--pink);
+  border-radius: 50px;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: 'Noto Sans JP', sans-serif;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+  background: var(--pink-light);
+}
+
+.btn-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 15px;
+  background: #06C755;
+  color: var(--white);
+  border: none;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: 'Noto Sans JP', sans-serif;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(6, 199, 85, 0.35);
+  transition: all 0.2s;
+}
+
+.btn-line:hover {
+  background: #05B54D;
+  transform: translateY(-2px);
+}
+
+.btn-line .line-icon {
+  font-size: 20px;
+}
+
+/* ============================================================
+   結果画面
+   ============================================================ */
+#screen-result .result-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.result-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--pink);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.result-header-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* 動物メインカード */
+.animal-main-card {
+  border-radius: var(--radius);
+  padding: 28px 20px 24px;
+  text-align: center;
+  color: var(--white);
+  margin-bottom: 14px;
+  box-shadow: var(--shadow);
+}
+
+.animal-emoji {
+  font-size: 70px;
+  line-height: 1;
+  margin-bottom: 8px;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));
+}
+
+.animal-type-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  opacity: 0.85;
+  margin-bottom: 4px;
+}
+
+.animal-name {
+  font-size: 34px;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+}
+
+/* 詳細カード */
+.result-detail-card {
+  margin-bottom: 12px;
+}
+
+.detail-section {
+  margin-bottom: 14px;
+}
+
+.detail-section:last-child {
+  margin-bottom: 0;
+}
+
+.detail-heading {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-sub);
+  margin-bottom: 6px;
+}
+
+.detail-heading .icon {
+  font-size: 16px;
+}
+
+.detail-text {
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.7;
+  background: var(--bg);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+}
+
+/* 相性カード */
+.compatible-card {
+  background: var(--yellow-light);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  margin-bottom: 12px;
+}
+
+.compatible-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 14px;
+  text-align: center;
+}
+
+.compatible-title .star {
+  color: #FFB300;
+  font-size: 16px;
+}
+
+.compatible-list {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.compatible-item {
+  text-align: center;
+  background: var(--white);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  flex: 1;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.compatible-emoji {
+  font-size: 32px;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.compatible-name {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* アクションボタンエリア */
+.action-area {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin-top: 4px;
+}
+
+.line-caption {
+  font-size: 11px;
+  color: var(--text-sub);
+  text-align: center;
+  margin-top: 2px;
+}
+
+/* ============================================================
+   フッター
+   ============================================================ */
+.footer-brand {
+  text-align: center;
+  margin-top: 24px;
+  font-size: 12px;
+  color: var(--text-sub);
+  opacity: 0.7;
+}
+
+/* ============================================================
+   エラー・ローディング
+   ============================================================ */
+.error-toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #FF4B4B;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 700;
+  box-shadow: 0 4px 16px rgba(255, 75, 75, 0.4);
+  z-index: 999;
+  white-space: nowrap;
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from { transform: translateX(-50%) translateY(20px); opacity: 0; }
+  to   { transform: translateX(-50%) translateY(0); opacity: 1; }
+}
+
+/* ============================================================
+   レスポンシブ調整
+   ============================================================ */
+@media (max-width: 360px) {
+  .animal-emoji { font-size: 56px; }
+  .animal-name { font-size: 28px; }
+  .compatible-list { gap: 8px; }
+  .card { padding: 22px 18px; }
+}

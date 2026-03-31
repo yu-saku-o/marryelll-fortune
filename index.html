@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>動物占い | mariel</title>
+  <meta name="description" content="あなたの生年月日から動物キャラタイプを診断！相性の良い相手を見つけよう。" />
+
+  <!-- LINE LIFF SDK -->
+  <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+
+  <!-- スタイル -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<div id="app">
+
+  <!-- ============================================================
+       TOP画面
+       ============================================================ -->
+  <div id="screen-top" class="screen active">
+    <div class="card">
+      <!-- ブランドヘッダー -->
+      <header class="top-header">
+        <div class="logo-area">
+          <span class="logo-mark">💍</span>
+          <span class="brand-name">mariel</span>
+        </div>
+        <h1 class="top-title">あなたの<span>動物キャラ</span><br>診断してみよう！</h1>
+        <p class="top-subtitle">生年月日から相性のいい相手がわかる</p>
+      </header>
+
+      <!-- 動物パレード -->
+      <div class="animal-parade" aria-hidden="true">
+        🦁 🐆 🐺 🦌 🐒 🦝 🐨 🐘 🐑 🐯 🦄 🐈‍⬛
+      </div>
+
+      <!-- 説明文 -->
+      <p class="top-desc">
+        四柱推命をベースに、あなたを<strong>12種類の動物キャラ</strong>に判定！<br>
+        フリータイムで<strong>相性のいい相手</strong>を探してみて 💕
+      </p>
+
+      <!-- スタートボタン -->
+      <button class="btn-primary" onclick="showScreen('input')">
+        ✨ 占いスタート
+      </button>
+    </div>
+
+    <p class="footer-brand">© mariel</p>
+  </div>
+
+  <!-- ============================================================
+       入力画面
+       ============================================================ -->
+  <div id="screen-input" class="screen">
+    <div class="card">
+      <h2 class="section-title">🔮 あなたの情報を入力</h2>
+
+      <!-- 性別 -->
+      <div class="form-group">
+        <label class="form-label">性別</label>
+        <div class="gender-buttons">
+          <button class="gender-btn" data-gender="male">
+            <span class="g-icon">👨</span>男性
+          </button>
+          <button class="gender-btn" data-gender="female">
+            <span class="g-icon">👩</span>女性
+          </button>
+        </div>
+      </div>
+
+      <!-- 生年月日 -->
+      <div class="form-group">
+        <label class="form-label">生年月日</label>
+        <div class="birthday-row">
+          <div class="select-wrap">
+            <select id="sel-year" aria-label="生まれ年">
+              <option value="" disabled selected>年</option>
+            </select>
+          </div>
+          <div class="select-wrap">
+            <select id="sel-month" aria-label="生まれ月">
+              <option value="" disabled selected>月</option>
+            </select>
+          </div>
+          <div class="select-wrap">
+            <select id="sel-day" aria-label="生まれ日">
+              <option value="" disabled selected>日</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- 占うボタン -->
+      <button class="btn-primary" onclick="onFortune()">
+        🐾 占う
+      </button>
+    </div>
+
+    <p class="footer-brand">© mariel</p>
+  </div>
+
+  <!-- ============================================================
+       結果画面
+       ============================================================ -->
+  <div id="screen-result" class="screen">
+
+    <!-- 見出し -->
+    <div class="result-header">
+      <p class="result-label">Your Animal Type</p>
+      <p class="result-header-title">あなたの動物キャラはこちら！</p>
+    </div>
+
+    <!-- 動物メインカード -->
+    <div id="animal-main-card" class="animal-main-card">
+      <div id="animal-emoji" class="animal-emoji">🦁</div>
+      <p class="animal-type-label">ANIMAL TYPE</p>
+      <h2 id="animal-name" class="animal-name">ライオン</h2>
+    </div>
+
+    <!-- 性格・恋愛傾向 -->
+    <div class="card result-detail-card">
+      <div class="detail-section">
+        <p class="detail-heading"><span class="icon">💡</span>基本性格</p>
+        <p class="detail-text" id="text-personality"></p>
+      </div>
+      <div class="detail-section">
+        <p class="detail-heading"><span class="icon">💕</span>恋愛傾向</p>
+        <p class="detail-text" id="text-love"></p>
+      </div>
+    </div>
+
+    <!-- 相性 -->
+    <div class="compatible-card">
+      <p class="compatible-title">
+        <span class="star">★</span> 相性の良い動物 TOP3 <span class="star">★</span>
+      </p>
+      <div class="compatible-list" id="compatible-list"></div>
+    </div>
+
+    <!-- アクションボタン -->
+    <div class="action-area">
+      <button id="btn-send-line" class="btn-line" onclick="onSendToLine()">
+        <span class="line-icon">💬</span> 結果をLINEに送る
+      </button>
+      <p class="line-caption">※ タップするとLINEのトーク画面に結果が届きます</p>
+      <button class="btn-secondary" onclick="onRetry()">
+        🔄 もう一度占う
+      </button>
+    </div>
+
+    <p class="footer-brand">© mariel</p>
+  </div>
+
+</div><!-- /#app -->
+
+<!-- スクリプト -->
+<script src="js/fortune.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

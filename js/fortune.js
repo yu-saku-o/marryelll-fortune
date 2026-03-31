@@ -211,6 +211,160 @@ function getAnimalIdByMeiSuu(meiSuu) {
 }
 
 // ============================================================
+// Flexメッセージ生成
+// ============================================================
+
+/**
+ * 動物データからLINE Flexメッセージオブジェクトを生成
+ * liff.sendMessages() で直接送信できる形式
+ */
+function buildFlexMessage(animal) {
+  const compatibleBoxes = animal.compatibleAnimals.map(a => ({
+    type: "box",
+    layout: "vertical",
+    flex: 1,
+    backgroundColor: "#FFF8F0",
+    cornerRadius: "12px",
+    paddingAll: "12px",
+    contents: [
+      {
+        type: "text",
+        text: a.emoji,
+        size: "xxl",
+        align: "center"
+      },
+      {
+        type: "text",
+        text: a.name,
+        size: "xxs",
+        align: "center",
+        color: "#555555",
+        weight: "bold",
+        margin: "sm"
+      }
+    ]
+  }));
+
+  return {
+    type: "flex",
+    altText: `${animal.emoji} あなたの動物キャラ【${animal.name}】診断結果`,
+    contents: {
+      type: "bubble",
+      size: "mega",
+      styles: {
+        header: { backgroundColor: animal.color },
+        footer: { backgroundColor: "#fafafa" }
+      },
+      header: {
+        type: "box",
+        layout: "vertical",
+        paddingTop: "28px",
+        paddingBottom: "24px",
+        contents: [
+          {
+            type: "text",
+            text: animal.emoji,
+            size: "5xl",
+            align: "center"
+          },
+          {
+            type: "text",
+            text: "ANIMAL TYPE",
+            size: "xxs",
+            color: "#ffffffaa",
+            align: "center",
+            margin: "md"
+          },
+          {
+            type: "text",
+            text: animal.name,
+            size: "xxl",
+            weight: "bold",
+            color: "#ffffff",
+            align: "center",
+            margin: "sm"
+          }
+        ]
+      },
+      body: {
+        type: "box",
+        layout: "vertical",
+        paddingAll: "20px",
+        contents: [
+          // 性格
+          {
+            type: "text",
+            text: "💡 基本性格",
+            size: "xs",
+            weight: "bold",
+            color: "#888888"
+          },
+          {
+            type: "text",
+            text: animal.personality,
+            size: "sm",
+            wrap: true,
+            margin: "sm",
+            color: "#333333"
+          },
+          // セパレーター
+          { type: "separator", margin: "lg", color: "#f0f0f0" },
+          // 恋愛傾向
+          {
+            type: "text",
+            text: "💕 恋愛傾向",
+            size: "xs",
+            weight: "bold",
+            color: "#888888",
+            margin: "lg"
+          },
+          {
+            type: "text",
+            text: animal.love,
+            size: "sm",
+            wrap: true,
+            margin: "sm",
+            color: "#333333"
+          },
+          // セパレーター
+          { type: "separator", margin: "lg", color: "#f0f0f0" },
+          // 相性
+          {
+            type: "text",
+            text: "★ 相性の良い動物 TOP3",
+            size: "xs",
+            weight: "bold",
+            color: "#888888",
+            margin: "lg"
+          },
+          {
+            type: "box",
+            layout: "horizontal",
+            spacing: "sm",
+            margin: "md",
+            contents: compatibleBoxes
+          }
+        ]
+      },
+      footer: {
+        type: "box",
+        layout: "vertical",
+        paddingAll: "16px",
+        contents: [
+          {
+            type: "text",
+            text: "💍 mariel",
+            size: "xs",
+            color: "#aaaaaa",
+            align: "center"
+          }
+        ]
+      }
+    }
+  };
+}
+
+// ============================================================
 // メイン: 生年月日から動物タイプを判定
 // ============================================================
 
